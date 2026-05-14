@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git clone *)",
+      "PowerShell(.\\\\git_push.ps1)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\ULTRAPC\\Desktop\\igamane\\repo-temp"
+    ]
+  }
+}
