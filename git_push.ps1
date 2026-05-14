@@ -12,7 +12,7 @@ if (-not (Test-Path ".git")) {
 # Add remote if not set
 $remotes = & git remote
 if ($remotes -notcontains "origin") {
-    & git remote add origin https://github.com/oussanhh/igamane.git
+    & git remote add origin https://github.com/matrix049/igamane.git
     Write-Host "Remote added."
 } else {
     Write-Host "Remote already set."
