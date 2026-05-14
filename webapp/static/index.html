@@ -10,53 +10,85 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-                <button onclick="window.location.reload()" style="background: rgba(255,255,255,0.1); border: none; color: white; padding: 10px 20px; border-radius: 50px; cursor: pointer; display: flex; align-items: center; gap: 8px;">
-                    🏠 Accueil
-                </button>
-                <div style="font-size: 0.8rem; opacity: 0.5;">Projet 6 - Système de Recommandation</div>
-            </div>
-            <h1>BookRec AI</h1>
-            <p>Découvrez votre prochaine lecture grâce à l'intelligence sémantique.</p>
-        </header>
-
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Rechercher un livre ou un auteur...">
+    <header class="page-header">
+        <div class="container header-row">
+            <a class="brand" href="#top">
+                <span class="brand-mark">B</span>
+                <span class="brand-name">BookRec <span class="brand-ai">AI</span></span>
+            </a>
+            <div class="header-meta">Projet 6 — Recommandation</div>
         </div>
+    </header>
+
+    <div class="hero">
+        <div class="container">
+            <h1 id="top">Trouvez votre prochaine lecture.</h1>
+            <p>Recommandations sémantiques basées sur TF-IDF et similarité cosinus.</p>
+        </div>
+    </div>
+
+    <div class="sticky-bar">
+        <div class="container">
+            <div class="search-box">
+                <svg class="search-icon-leading" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="7"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="searchInput" placeholder="Rechercher titre, auteur ou éditeur...">
+                <button id="searchBtn" class="search-btn" aria-label="Rechercher" title="Rechercher (Entrée)">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="filter-bar">
+                <select id="filterGenre" class="filter-select">
+                    <option value="">Tous les genres</option>
+                </select>
+                <input type="number" id="filterYearMin" class="filter-input" placeholder="Année min">
+                <input type="number" id="filterYearMax" class="filter-input" placeholder="Année max">
+                <button id="clearFilters" class="filter-clear">Réinitialiser</button>
+                <span id="resultCount" class="result-count"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
 
         <div id="favoritesSection" style="display:none;">
             <h2 class="section-title">Mes Favoris (Profil Utilisateur)</h2>
             <div id="favoritesGrid" class="grid"></div>
         </div>
 
-        <h2 class="section-title">Livres Recommandés</h2>
+        <h2 class="section-title" id="recsHeader">Livres Recommandés</h2>
         <div id="recommendationsGrid" class="grid">
             <!-- Rempli par JS -->
         </div>
 
-        <h2 class="section-title">Catalogue Global</h2>
+        <h2 class="section-title" id="catalogHeader">Catalogue Global</h2>
         <div id="booksGrid" class="grid">
             <!-- Rempli par JS -->
         </div>
+        <nav id="pagination" class="pagination" aria-label="Pagination"></nav>
 
-        <hr style="opacity: 0.1; margin: 4rem 0;">
+        <hr style="opacity: 0.08; margin: 3rem 0; border: none; border-top: 1px solid rgba(255,255,255,0.1);">
 
-        <h2 class="section-title">Analytique & Visualisation (Partie H)</h2>
-        <div class="grid" style="grid-template-columns: 1fr 1fr;">
+        <h2 class="section-title">Analytique & Visualisation</h2>
+        <div class="discussion-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
             <div class="discussion-card">
-                <h4 style="margin-bottom: 1rem;">Nuage de mots des descriptions</h4>
-                <img src="wordcloud.png" style="width: 100%; border-radius: 10px;" alt="Nuage de mots">
+                <h4>Nuage de mots</h4>
+                <img src="wordcloud.png" style="width: 100%; border-radius: 10px; margin-top: 0.5rem;" alt="Nuage de mots">
             </div>
             <div class="discussion-card">
-                <h4 style="margin-bottom: 1rem;">Heatmap de Similarité Cosinus</h4>
-                <img src="heatmap.png" style="width: 100%; border-radius: 10px;" alt="Heatmap">
+                <h4>Heatmap de Similarité Cosinus</h4>
+                <img src="heatmap.png" style="width: 100%; border-radius: 10px; margin-top: 0.5rem;" alt="Heatmap">
             </div>
         </div>
 
-        <h2 class="section-title">Comparaison des Approches (Partie G)</h2>
-        <div class="discussion-card" style="margin-bottom: 4rem; overflow-x: auto;">
+        <h2 class="section-title">Comparaison des Approches</h2>
+        <div class="discussion-card" style="margin-bottom: 3rem; overflow-x: auto;">
             <table style="width: 100%; border-collapse: collapse; text-align: left;">
                 <thead>
                     <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
@@ -85,7 +117,7 @@
             </table>
         </div>
 
-        <h2 class="section-title">Discussion Scientifique & Analyse (Partie I)</h2>
+        <h2 class="section-title">Discussion Scientifique</h2>
         <div class="discussion-grid">
             <div class="discussion-card">
                 <h4>Cold Start</h4>
@@ -106,13 +138,15 @@
         </div>
     </div>
 
-    <div id="gptModal" class="modal">
+    <div id="gptModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle" style="margin-bottom: 1rem; color: var(--accent);">Analyse GPT</h2>
+            <button class="close-modal" onclick="closeModal()" aria-label="Fermer">&times;</button>
+            <h2 id="modalTitle">Analyse GPT</h2>
             <div id="modalBody"></div>
         </div>
     </div>
+
+    <div id="toastHost" class="toast-host" aria-live="polite" aria-atomic="true"></div>
 
     <script src="script.js"></script>
 </body>

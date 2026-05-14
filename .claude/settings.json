@@ -2,7 +2,13 @@
   "permissions": {
     "allow": [
       "Bash(git clone *)",
-      "PowerShell(.\\\\git_push.ps1)"
+      "PowerShell(.\\\\git_push.ps1)",
+      "PowerShell(python --version)",
+      "PowerShell(python -c \"import fastapi, uvicorn, sklearn, pandas, nltk; print\\('deps ok'\\)\")",
+      "Read(//c/Users/ULTRAPC/AppData/Local/Temp/claude/c--Users-ULTRAPC-Desktop-igamane/9bf2d026-e2b6-4c01-b817-7af922656e93/tasks/**)",
+      "Bash(curl -s \"http://127.0.0.1:8000/facets\")",
+      "Bash(curl -s \"http://127.0.0.1:8000/books?genre=Mystery&limit=3\")",
+      "Bash(grep -E \"\\\\.\\(gitignore|env\\)$\")"
     ],
     "additionalDirectories": [
       "c:\\Users\\ULTRAPC\\Desktop\\igamane\\repo-temp"
